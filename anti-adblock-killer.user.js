@@ -34,7 +34,7 @@
 // @run-at document-start
 // @connect *
 // ==/UserScript==
-/*jshint evil:true newcap:false*/
+/*jshint evil:true, newcap:false*/
 /*global unsafeWindow, GM_addStyle, GM_getValue, GM_setValue, GM_xmlhttpRequest, GM_registerMenuCommand, GM_deleteValue, GM_listValues, GM_getResourceText, GM_getResourceURL, GM_log, GM_openInTab, GM_setClipboard, GM_info, GM_getMetadata, $, document, console, location, setInterval, setTimeout, clearInterval*/
 /*=====================================================
   Thanks
@@ -698,7 +698,7 @@
         var first = str.indexOf("{") + 1;
         var last = str.lastIndexOf("}");
         return str.substr(first, last - first).trim();
-      } else if (typeof entry === 'object') {
+      } else if (typeof a === 'object') {
         return JSON.stringify(a);
       } else { // array or string
         return a.toString();
@@ -4421,7 +4421,8 @@
                 Programmet er blokeret for visning fra denne geografiske position.
                 Programą galite matyti tik jungdamiesi iš Lietuvos interneto tiekėjų tinklų */
                 if (obj.msg) {
-                  return thisElement.innerHTML = obj.msg;
+                  thisElement.innerHTML = obj.msg;
+                  return;
                 }
 
                 if (location.host === 'tv3play.tv3.ee') {

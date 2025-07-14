@@ -698,7 +698,7 @@
         var first = str.indexOf("{") + 1;
         var last = str.lastIndexOf("}");
         return str.substr(first, last - first).trim();
-      } else if (typeof entry === 'object') {
+      } else if (typeof a === 'object') {
         return JSON.stringify(a);
       } else { // array or string
         return a.toString();

@@ -926,13 +926,18 @@
       return obj1;
     },
     fixProtocolURL : function (url) {
-      if (/^http/.test(url)) { // absolute
+      if (/^https?:/i.test(url)) { // absolute
         return url;
-      } else if (/^\/\//.test(url)) { // relative
-        return 'http:' + url;
-      } else { // none
-        return 'http://' + url;
       }
+
+      // Prefer the active document protocol, falling back to HTTPS to avoid mixed content on secure pages.
+      var protocol = (window && window.location && /^https?:$/.test(window.location.protocol)) ? window.location.protocol : 'https:';
+
+      if (/^\/\//.test(url)) { // protocol-relative
+        return protocol + url;
+      }
+
+      return protocol + '//' + url.replace(/^\/+/, ''); // host without protocol
     },
     fakeFuckAdBlock : function (instanceName, className) {
 
